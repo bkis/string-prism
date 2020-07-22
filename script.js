@@ -1,7 +1,8 @@
 function getResultElement(input){
     let element = $("<div/>");
     input.split('').forEach(c => {
-        let char = $("<div class='char'/>").text(c);
+        let char = $("<div class='char'/>");
+        char.append($("<div class='enc'/>").text(c));
         char.append($("<div class='codepoint'/>").html(
             "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
             "&amp;#" + c.codePointAt(0) + "\;"
