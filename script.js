@@ -1,3 +1,16 @@
+function getResultElement(input){
+    let element = $("<div/>");
+    input.split('').forEach(c => {
+        let char = $("<div class='char'/>").text(c);
+        char.append($("<div class='codepoint'/>").html(
+            "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
+            "\&" + c.codePointAt(0) + "\;"
+        ));
+        element.append(char);
+    });
+    return element;
+}
+
 $(function() {
 
     $("#input-form").submit(function(e) {
@@ -6,47 +19,22 @@ $(function() {
         //// do the magic
 
         let result = $("#result");
-        let resultORG = $("<div/>");
-        let resultNFC = $("<div/>");
-        let resultNFD = $("<div/>");
-
         result.html("");
 
         // ORIGINAL
-        resultORG.append($("<h2>original</h2>"));
-        $("#input").val().split('').forEach(c => {
-            let char = $("<div class='char'/>").text(c);
-            char.append($("<div class='codepoint'/>").html(
-                "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
-                "\&" + c.codePointAt(0) + "\;"
-            ));
-            resultORG.append(char);
-        });
-        result.append(resultORG);
+        let input = $("#input").val();
+        result.append($("<h2>original (" + input.length + ")</h2>"));
+        result.append(getResultElement(input));
 
         // NFC
-        resultNFC.append("<h2>normalized (NFC)</h2>");
-        $("#input").val().normalize('NFC').split('').forEach(c => {
-            let char = $("<div class='char'/>").text(c);
-            char.append($("<div class='codepoint'/>").html(
-                "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
-                "\&" + c.codePointAt(0) + "\;"
-            ));
-            resultNFC.append(char);
-        });
-        result.append(resultNFC);
+        let inputNFC = $("#input").val().normalize('NFC');
+        result.append("<h2>NFC-normalized (" + inputNFC.length + ")</h2>");
+        result.append(getResultElement(inputNFC));
 
         // NFD
-        resultNFD.append("<h2>normalized (NFD)</h2>");
-        $("#input").val().normalize('NFD').split('').forEach(c => {
-            let char = $("<div class='char'/>").text(c);
-            char.append($("<div class='codepoint'/>").html(
-                "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
-                "\&" + c.codePointAt(0) + "\;"
-            ));
-            resultNFD.append(char);
-        });
-        result.append(resultNFD);
+        let inputNFD = $("#input").val().normalize('NFD');
+        result.append("<h2>NFD-normalized (" + inputNFD.length + ")</h2>");
+        result.append(getResultElement(inputNFD));
 
     });
     
