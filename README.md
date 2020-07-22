@@ -1,2 +1,3 @@
-# unicode-splitter
-✂ Simple, handy tool that decomposes Unicode strings for inspecting them
+# ✂ unicode-splitter
+
+Just try it [here](#), you'll see what it does.
