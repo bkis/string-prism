@@ -4,7 +4,7 @@ function getResultElement(input){
         let char = $("<div class='char'/>").text(c);
         char.append($("<div class='codepoint'/>").html(
             "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
-            "\&" + c.codePointAt(0) + "\;"
+            "\&#" + c.codePointAt(0) + "\;"
         ));
         element.append(char);
     });
