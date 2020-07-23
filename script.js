@@ -1,9 +1,13 @@
+function getColorChannelValue(from, modifier){
+    return parseInt((((from * 95) % (42 + modifier)) / (42 + modifier)) * 255, 10) * 0.75;
+}
+
 function getResultElement(input){
     let element = $("<div/>");
     input.split('').forEach(c => {
-        let r = parseInt(((c.codePointAt(0) % 42) / 42) * 255, 10) * 0.75;
-        let g = parseInt(((c.codePointAt(0) % 17) / 17) * 255, 10) * 0.75;
-        let b = parseInt(((c.codePointAt(0) % 98) / 98) * 255, 10) * 0.75;
+        let r = getColorChannelValue(c.codePointAt(0), 11);
+        let g = getColorChannelValue(c.codePointAt(0), 2);
+        let b = getColorChannelValue(c.codePointAt(0), 35);
         let color = "rgba(" + r + "," + g + "," + b + ", 1.0)";
         let char = $("<div class='char'/>").css("border-color", color);
         char.append($("<div class='enc'/>").text(c));
@@ -45,4 +49,6 @@ $(function() {
     $("#input").on("input", function() {
         processInput();
     });
+    $("#input").val("Et Voilà!");
+    processInput();
 });

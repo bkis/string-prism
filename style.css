@@ -14,8 +14,10 @@ h1 {
 }
 
 h2 {
+    color: #898989;
     font-weight: normal;
     margin-bottom: .5rem;
+    font-variant: small-caps;
 }
 
 header, main {
