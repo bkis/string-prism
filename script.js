@@ -1,21 +1,24 @@
 function getColorChannelValue(from, modifier){
-    return parseInt((((from * 95) % (42 + modifier)) / (42 + modifier)) * 255, 10) * 0.75;
+    return 20 + parseInt((((from * 7251) % (42 + modifier)) / (42 + modifier)) * 235, 10) * 0.75;
 }
 
 function getResultElement(input){
     let element = $("<div/>");
-    input.split('').forEach(c => {
-        let r = getColorChannelValue(c.codePointAt(0), 11);
-        let g = getColorChannelValue(c.codePointAt(0), 2);
-        let b = getColorChannelValue(c.codePointAt(0), 35);
+    input.split('').forEach((c,i) => {
+        let r = getColorChannelValue(c.codePointAt(0), 113);
+        let g = getColorChannelValue(c.codePointAt(0), 22);
+        let b = getColorChannelValue(c.codePointAt(0), 358);
         let color = "rgba(" + r + "," + g + "," + b + ", 1.0)";
+        let charLink = $("<a href='https://unicode-table.com/" + c.codePointAt(0).toString(16) + "' target='_blank'/>");
         let char = $("<div class='char'/>").css("border-color", color);
+        charLink.append(char);
         char.append($("<div class='enc'/>").text(c));
         char.append($("<div class='codepoint'/>").html(
+            "<b>" + i + "</b><br>" +
             "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
             "&amp;#" + c.codePointAt(0) + "\;"
         ).css("background-color", color));
-        element.append(char);
+        element.append(charLink);
     });
     return element;
 }
