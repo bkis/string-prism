@@ -1,42 +1,48 @@
 function getResultElement(input){
     let element = $("<div/>");
     input.split('').forEach(c => {
-        let char = $("<div class='char'/>");
+        let r = parseInt(((c.codePointAt(0) % 42) / 42) * 255, 10) * 0.75;
+        let g = parseInt(((c.codePointAt(0) % 17) / 17) * 255, 10) * 0.75;
+        let b = parseInt(((c.codePointAt(0) % 98) / 98) * 255, 10) * 0.75;
+        let color = "rgba(" + r + "," + g + "," + b + ", 1.0)";
+        let char = $("<div class='char'/>").css("border-color", color);
         char.append($("<div class='enc'/>").text(c));
         char.append($("<div class='codepoint'/>").html(
             "\\u" + c.codePointAt(0).toString(16).toUpperCase() + "<br>" +
             "&amp;#" + c.codePointAt(0) + "\;"
-        ));
+        ).css("background-color", color));
         element.append(char);
     });
     return element;
 }
 
-$(function() {
+function processInput(){
+    let result = $("#result");
+    result.html("");
 
+    // ORIGINAL
+    let input = $("#input").val();
+    if (input.length === 0) return;
+    result.append($("<h2>original input (" + input.length + ")</h2>"));
+    result.append(getResultElement(input));
+
+    // NFC
+    let inputNFC = $("#input").val().normalize('NFC');
+    result.append("<h2>NFC-normalized (" + inputNFC.length + ")</h2>");
+    result.append(getResultElement(inputNFC));
+
+    // NFD
+    let inputNFD = $("#input").val().normalize('NFD');
+    result.append("<h2>NFD-normalized (" + inputNFD.length + ")</h2>");
+    result.append(getResultElement(inputNFD));
+}
+
+$(function() {
     $("#input-form").submit(function(e) {
         e.preventDefault();
-        
-        //// do the magic
-
-        let result = $("#result");
-        result.html("");
-
-        // ORIGINAL
-        let input = $("#input").val();
-        result.append($("<h2>original (" + input.length + ")</h2>"));
-        result.append(getResultElement(input));
-
-        // NFC
-        let inputNFC = $("#input").val().normalize('NFC');
-        result.append("<h2>NFC-normalized (" + inputNFC.length + ")</h2>");
-        result.append(getResultElement(inputNFC));
-
-        // NFD
-        let inputNFD = $("#input").val().normalize('NFD');
-        result.append("<h2>NFD-normalized (" + inputNFD.length + ")</h2>");
-        result.append(getResultElement(inputNFD));
-
+        processInput();
     });
-    
+    $("#input").on("input", function() {
+        processInput();
+    });
 });
