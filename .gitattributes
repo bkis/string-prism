@@ -1,3 +1,4 @@
-assets/css/* linguist-vendored
+fonts/* linguist-vendored
+images/* linguist-vendored
 *.css linguist-language=JavaScript
 *.html linguist-language=Hack
