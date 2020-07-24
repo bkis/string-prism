@@ -12,7 +12,7 @@ function getResultElement(input){
         let codes = "\\u" + c.codePointAt(0).toString(16).toUpperCase() +
             "<br>" + "&amp;#" + c.codePointAt(0) + "\;";
         let charLink = $(
-            "<a href='https://unicode-table.com/" + 
+            "<a href='https://codepoints.net/U+" + 
             c.codePointAt(0).toString(16) + 
             "' target='_blank' " +
             "title='" + codes + "' />");
