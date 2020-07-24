@@ -19,7 +19,7 @@ function getResultElement(input){
         let char = $("<div class='char'/>").css("background-color", color);
         charLink.append(char);
         char.append($("<div class='enc'/>").text(c));
-        char.append($("<div class='codepoint'/>").html("<b>" + i + "</b><br>" + codes));
+        char.append($("<div class='codepoint'/>").html("<b>" + i + "</b>" + codes));
         element.append(charLink);
     });
     return element;
