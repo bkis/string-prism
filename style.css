@@ -74,9 +74,6 @@ header img {
     border-radius: 4px;
     display: inline-block;
     transition: .2s;
-    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
     overflow: hidden;
 }
 
@@ -113,7 +110,6 @@ header img {
     right: 0;
     top: -4px;
     display: block;
-    width: 100%;
     margin: 0 auto;
     font-weight: bold;
     font-size: 16px;
@@ -157,7 +153,9 @@ input[type='text'] {
     padding: 0 1rem;
     font-size: 18px;
     background-color: #fff;
+}
 
+.box-shadow {
     -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.5);
