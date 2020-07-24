@@ -1,6 +1,3 @@
-// array with example inputs
-var exampleInputs = ["अ॒ग्निः", "Et voilà!", "mañana", "أشعر بالقهوة", "Jemöös"];
-
 // this is science, everything is fully intended
 function getColorChannelValue(from, modifier){
     return 20 + parseInt((((from * 7251) % (42 + modifier)) / (42 + modifier)) * 235, 10) * 0.75;
@@ -69,6 +66,8 @@ $(function() {
     $("#input").on("input", function() {
         processInput();
     });
+    // array with example inputs
+    let exampleInputs = ["अ॒ग्निः", "Et voilà!", "mañana", "أشعر بالقهوة", "Jemöös"];
     // set and process placeholder input
     $("#input").val(exampleInputs[Math.floor(Math.random() * exampleInputs.length)]);
     processInput();
