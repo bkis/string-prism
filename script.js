@@ -9,13 +9,15 @@ function getResultElement(input){
         let g = getColorChannelValue(c.codePointAt(0), 22);
         let b = getColorChannelValue(c.codePointAt(0), 358);
         let color = "rgba(" + r + "," + g + "," + b + ", 1.0)";
-        let codes = "\\u" + c.codePointAt(0).toString(16).toUpperCase() +
-            "<br>" + "&amp;#" + c.codePointAt(0) + "\;";
+        let codes = c.codePointAt(0).toString(16).toUpperCase() +
+            "<br>" + c.codePointAt(0);
+        let codesTitle = "JS Unicode: \\u" + c.codePointAt(0).toString(16).toUpperCase().padStart(4, "0") +
+        "\nHTML entity: &amp;#" + c.codePointAt(0) + "\;";
         let charLink = $(
             "<a href='https://codepoints.net/U+" + 
             c.codePointAt(0).toString(16) + 
             "' target='_blank' " +
-            "title='" + codes + "' />");
+            "title='" + codesTitle + "' />");
         let char = $("<div class='char'/>").css("background-color", color);
         charLink.append(char);
         char.append($("<div class='enc'/>").text(c));
