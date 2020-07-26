@@ -11,7 +11,7 @@ html, body {
 body {
     background-color: #323232;
     color: #676767;
-    font-family: "NotoMono", monospace;    
+    font-family: "NotoMono", monospace;
 }
 
 h1 {
@@ -21,10 +21,19 @@ h1 {
 }
 
 h2 {
+    display: inline-block;
     color: #898989;
     font-weight: normal;
     margin-bottom: .5rem;
+}
+
+h2.caps {
     font-variant: small-caps;
+}
+
+h2.io {
+    color: #ccc;
+    margin-left: 1rem;
 }
 
 header, main {
@@ -108,7 +117,7 @@ header img {
     position: absolute;
     left: 0;
     right: 0;
-    top: -4px;
+    top: -2px;
     display: block;
     margin: 0 auto;
     font-weight: bold;
@@ -145,6 +154,7 @@ footer {
 }
 
 input[type='text'] {
+    font-family: "NotoMono", monospace;
     height: 48px;
     width: 320px;
     max-width: 90%;

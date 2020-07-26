@@ -42,17 +42,20 @@ function processInput(){
     // ORIGINAL
     let input = $("#input").val();
     if (input.length === 0) return;
-    result.append($("<h2>original input (Length: " + input.length + ")</h2>"));
+    result.append($("<h2 class='caps'>original input (Length " + input.length + "):</h2>"));
+    result.append($("<h2 class='io'>" + input + "</h2>")).append($("<br/>"));
     result.append(getResultElement(input));
 
     // NFC
     let inputNFC = $("#input").val().normalize('NFC');
-    result.append("<h2>NFC-normalized (Length: " + inputNFC.length + ")</h2>");
+    result.append($("<h2 class='caps'>NFC-normalized (Length " + inputNFC.length + "):</h2>"));
+    result.append($("<h2 class='io'>" + inputNFC + "</h2>")).append($("<br/>"));
     result.append(getResultElement(inputNFC));
 
     // NFD
     let inputNFD = $("#input").val().normalize('NFD');
-    result.append("<h2>NFD-normalized (Length: " + inputNFD.length + ")</h2>");
+    result.append($("<h2 class='caps'>NFD-normalized (Length " + inputNFD.length + "):</h2>"));
+    result.append($("<h2 class='io'>" + inputNFD + "</h2>")).append($("<br/>"));
     result.append(getResultElement(inputNFD));
 }
 
